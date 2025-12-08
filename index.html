@@ -1,92 +1,139 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>BioTech Ventures | Telehealth NP Recruiting</title>
+  <title>BioTech Ventures | Medical Weight Loss Telehealth</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0c0f16;
-      color: #f4f4f4;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1f2933;
       line-height: 1.6;
     }
+
     header {
-      background: linear-gradient(135deg, #0f2a44, #111);
-      padding: 40px 20px;
+      background: linear-gradient(135deg, #f7fbff, #ffffff);
+      padding: 80px 20px 60px;
       text-align: center;
+      border-bottom: 1px solid #e5e7eb;
     }
+
     header h1 {
-      font-size: 34px;
+      font-size: 42px;
       margin-bottom: 10px;
+      color: #0b5ed7;
+      font-weight: 700;
     }
+
     header p {
-      font-size: 16px;
-      color: #ccc;
+      font-size: 20px;
+      color: #4b5563;
+      max-width: 720px;
+      margin: auto;
     }
+
     nav {
-      background: #111;
-      padding: 12px;
+      background: #ffffff;
+      padding: 18px;
       text-align: center;
       position: sticky;
       top: 0;
+      border-bottom: 1px solid #e5e7eb;
+      z-index: 1000;
     }
+
     nav a {
-      color: #00c2ff;
-      margin: 0 12px;
+      color: #0b5ed7;
+      margin: 0 16px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 16px;
     }
+
     section {
-      padding: 50px 20px;
-      max-width: 900px;
+      padding: 80px 20px;
+      max-width: 1100px;
       margin: auto;
     }
+
     h2 {
-      color: #00c2ff;
+      color: #0b5ed7;
+      font-size: 32px;
+      margin-bottom: 20px;
     }
+
     .box {
-      background: #161b29;
-      padding: 25px;
-      border-radius: 8px;
-      margin-top: 15px;
+      background: #f9fafb;
+      padding: 40px;
+      border-radius: 16px;
+      margin-top: 20px;
+      border: 1px solid #e5e7eb;
     }
+
     ul li {
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
+
     .cta {
-      background: #00c2ff;
-      color: #000;
-      padding: 12px 20px;
+      background: #0b5ed7;
+      color: white;
+      padding: 16px 30px;
       display: inline-block;
-      margin-top: 15px;
-      border-radius: 6px;
-      font-weight: bold;
+      margin-top: 24px;
+      border-radius: 10px;
+      font-weight: 600;
       text-decoration: none;
+      font-size: 17px;
     }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 30px;
+      border: 1px solid #e5e7eb;
+    }
+
     form input, form select {
       width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: none;
+      padding: 14px;
+      margin-top: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccd3dc;
+      font-size: 16px;
     }
+
     form button {
       width: 100%;
-      padding: 14px;
-      margin-top: 15px;
-      background: #00c2ff;
+      padding: 18px;
+      margin-top: 20px;
+      background: #0b5ed7;
       border: none;
-      font-size: 16px;
-      font-weight: bold;
+      font-size: 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
     }
+
     footer {
-      background: #05070c;
+      background: #f8fafc;
       text-align: center;
-      padding: 20px;
-      color: #777;
+      padding: 40px;
+      color: #6b7280;
       font-size: 14px;
+      border-top: 1px solid #e5e7eb;
     }
   </style>
 </head>
@@ -95,12 +142,13 @@
 
 <header>
   <h1>BioTech Ventures</h1>
-  <p>Cash-Pay Telehealth • GLP-1 Weight Loss • NP-Led Care in FPA States</p>
+  <p>Doctor-guided medical weight loss and metabolic telehealth using GLP-1 therapies — built for speed, safety, and simplicity.</p>
+  <a class="cta" href="#apply">Apply as a Provider</a>
 </header>
 
 <nav>
   <a href="#home">Home</a>
-  <a href="#nps">For NPs</a>
+  <a href="#nps">For Providers</a>
   <a href="#medspas">For Med Spas</a>
   <a href="#how">How It Works</a>
   <a href="#compliance">Compliance</a>
@@ -108,44 +156,43 @@
 </nav>
 
 <section id="home">
-  <h2>Modern Cash-Pay Telehealth Built for Speed</h2>
+  <h2>Clinic-Grade Telehealth Without Insurance Friction</h2>
   <div class="box">
-    <p>BioTech Ventures operates a cash-pay telehealth platform focused on medical weight loss, metabolic health, and longevity.</p>
-    <ul>
-      <li>No insurance</li>
-      <li>No MD supervision in FPA states</li>
-      <li>10–15 minute consults</li>
-      <li>High NP compensation</li>
-      <li>503A pharmacy fulfillment</li>
-    </ul>
-    <a class="cta" href="#apply">Apply Now</a>
+    <div class="grid">
+      <div class="card">✓ Cash-pay patient model</div>
+      <div class="card">✓ 10–15 minute virtual consults</div>
+      <div class="card">✓ No MD supervision in FPA states</div>
+      <div class="card">✓ 503A pharmacy fulfillment</div>
+      <div class="card">✓ National telehealth scalability</div>
+      <div class="card">✓ High provider payout model</div>
+    </div>
   </div>
 </section>
 
 <section id="nps">
   <h2>For Nurse Practitioners</h2>
   <div class="box">
-    <ul>
-      <li>$80–$100 per completed chart</li>
-      <li>100% remote telehealth</li>
-      <li>1099 independent contractor</li>
-      <li>No insurance, coding, or admin burden</li>
-      <li>We provide patients, tech, pharmacy & support</li>
-    </ul>
-    <p><strong>Looking for:</strong> FNPs in Full Practice Authority states. Aesthetics experience is a plus.</p>
-    <a class="cta" href="#apply">Apply as an NP</a>
+    <div class="grid">
+      <div class="card">$80–$100 per completed chart</div>
+      <div class="card">100% remote telehealth</div>
+      <div class="card">1099 independent contractor</div>
+      <div class="card">No insurance, billing, or admin burden</div>
+      <div class="card">We supply patients & technology</div>
+      <div class="card">We handle pharmacy fulfillment</div>
+    </div>
+    <a class="cta" href="#apply">Apply as a Nurse Practitioner</a>
   </div>
 </section>
 
 <section id="medspas">
   <h2>For Med Spas & Wellness Clinics</h2>
   <div class="box">
-    <ul>
-      <li>White-label GLP-1 programs</li>
-      <li>Your patients, our NPs + pharmacy</li>
-      <li>Revenue per chart</li>
-      <li>Add medical revenue without hiring an MD</li>
-    </ul>
+    <div class="grid">
+      <div class="card">White-label GLP-1 programs</div>
+      <div class="card">NP prescribing coverage provided</div>
+      <div class="card">Revenue per completed chart</div>
+      <div class="card">No MD overhead required</div>
+    </div>
   </div>
 </section>
 
@@ -153,9 +200,9 @@
   <h2>How It Works</h2>
   <div class="box">
     <ol>
-      <li>Patient books online</li>
-      <li>NP completes video consult</li>
-      <li>RX sent to licensed pharmacy</li>
+      <li>Patient books online consultation</li>
+      <li>NP completes telehealth visit</li>
+      <li>Prescription sent to licensed pharmacy</li>
       <li>Medication ships to patient</li>
       <li>Monthly refills & follow-ups</li>
     </ol>
@@ -163,14 +210,14 @@
 </section>
 
 <section id="compliance">
-  <h2>Compliance & Legal</h2>
+  <h2>Compliance & Medical Governance</h2>
   <div class="box">
     <ul>
-      <li>Cash-pay only</li>
-      <li>Full Practice Authority only</li>
+      <li>Cash-pay telehealth model</li>
+      <li>Full Practice Authority states only</li>
       <li>State-licensed Nurse Practitioners</li>
-      <li>503A pharmacy fulfillment</li>
-      <li>HIPAA-compliant platform</li>
+      <li>503A pharmacy fulfillment partners</li>
+      <li>HIPAA-compliant systems</li>
       <li>No insurance billing</li>
     </ul>
   </div>
@@ -188,15 +235,17 @@
         <option>ANP</option>
         <option>Med Spa Owner</option>
       </select>
-      <input type="text" name="Experience" placeholder="Years of Experience">
+      <input type="text" name="Experience" placeholder="Years of Clinical Experience">
       <button type="submit">Submit Application</button>
     </form>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 BioTech Ventures LLC</p>
+  <p>© 2025 BioTech Ventures LLC — Cash-Pay Telehealth Platform</p>
 </footer>
 
 </body>
 </html>
+    
+     
