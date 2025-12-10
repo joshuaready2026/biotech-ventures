@@ -1,277 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>BioTech Ventures | Medical Weight Loss Telehealth</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioTech Ventures | Personalized Telehealth for Weight Loss, HRT & More</title>
+    <meta name="description" content="Get GLP-1 weight loss, hormone therapy, and ED treatments delivered. Fast online consults, direct-ship pharmacy. Starting at $199/month.">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .btn { background: linear-gradient(135deg, #007bff, #0056b3); color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; transition: transform 0.3s; display: inline-block; }
+        .btn:hover { transform: scale(1.05); }
+        .btn-secondary { background: white; color: #007bff; border: 2px solid #007bff; }
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        /* Header */
+        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 100; padding: 10px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav ul li a { font-weight: 500; transition: color 0.3s; }
+        nav ul li a:hover { color: #007bff; }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #1f2933;
-      line-height: 1.6;
-    }
+        /* Hero */
+        .hero { height: 100vh; background: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .hero-content { z-index: 1; max-width: 800px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.3rem; margin-bottom: 30px; }
 
-    header {
-      background: linear-gradient(135deg, #f7fbff, #ffffff);
-      padding: 80px 20px 60px;
-      text-align: center;
-      border-bottom: 1px solid #e5e7eb;
-    }
+        /* Services */
+        .services { padding: 80px 0; background: #f8f9fa; }
+        .services h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .service-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-card img { width: 100%; height: 250px; object-fit: cover; }
+        .service-card-content { padding: 30px; }
+        .service-card h3 { font-size: 1.8rem; margin-bottom: 10px; color: #007bff; }
 
-    header h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      color: #0b5ed7;
-      font-weight: 700;
-    }
+        /* How It Works */
+        .how { padding: 80px 0; background: white; }
+        .how h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+        .steps { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; }
+        .step { flex: 1 1 300px; text-align: center; }
+        .step img { width: 80px; height: 80px; margin-bottom: 20px; border-radius: 50%; background: #007bff; padding: 20px; }
+        .step h3 { font-size: 1.5rem; margin-bottom: 10px; }
 
-    header p {
-      font-size: 20px;
-      color: #4b5563;
-      max-width: 720px;
-      margin: auto;
-    }
+        /* Pricing */
+        .pricing { padding: 80px 0; background: #f8f9fa; }
+        .pricing h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+        .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .plan { background: white; border-radius: 15px; padding: 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
+        .plan.featured { border: 3px solid #007bff; transform: scale(1.05); }
+        .plan h3 { font-size: 2rem; margin-bottom: 20px; }
+        .plan .price { font-size: 3rem; font-weight: bold; color: #007bff; margin-bottom: 20px; }
+        .plan ul { list-style: none; margin-bottom: 30px; }
+        .plan ul li { margin-bottom: 10px; }
 
-    .hero-img {
-      margin-top: 30px;
-      max-width: 900px;
-      border-radius: 18px;
-      width: 100%;
-    }
+        /* CTA */
+        .cta { padding: 80px 0; background: linear-gradient(135deg, #007bff, #0056b3); color: white; text-align: center; }
+        .cta h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .cta p { font-size: 1.2rem; margin-bottom: 30px; }
 
-    nav {
-      background: #ffffff;
-      padding: 18px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      border-bottom: 1px solid #e5e7eb;
-      z-index: 1000;
-    }
+        /* Footer */
+        footer { background: #333; color: white; text-align: center; padding: 40px 0; }
 
-    nav a {
-      color: #0b5ed7;
-      margin: 0 16px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    section {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h2 {
-      color: #0b5ed7;
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
-    .box {
-      background: #f9fafb;
-      padding: 40px;
-      border-radius: 16px;
-      margin-top: 20px;
-      border: 1px solid #e5e7eb;
-    }
-
-    .img-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 25px;
-    }
-
-    .img-grid img {
-      width: 100%;
-      border-radius: 14px;
-      border: 1px solid #e5e7eb;
-    }
-
-    ul li {
-      margin-bottom: 12px;
-    }
-
-    .cta {
-      background: #0b5ed7;
-      color: white;
-      padding: 16px 30px;
-      display: inline-block;
-      margin-top: 24px;
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 17px;
-    }
-
-    form input, form select {
-      width: 100%;
-      padding: 14px;
-      margin-top: 14px;
-      border-radius: 8px;
-      border: 1px solid #ccd3dc;
-      font-size: 16px;
-    }
-
-    form button {
-      width: 100%;
-      padding: 18px;
-      margin-top: 20px;
-      background: #0b5ed7;
-      border: none;
-      font-size: 18px;
-      border-radius: 10px;
-      font-weight: 700;
-      color: white;
-      cursor: pointer;
-    }
-
-    footer {
-      background: #f8fafc;
-      text-align: center;
-      padding: 40px;
-      color: #6b7280;
-      font-size: 14px;
-      border-top: 1px solid #e5e7eb;
-    }
-  </style>
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .steps { flex-direction: column; align-items: center; }
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <nav class="container">
+            <div class="logo">BioTech Ventures</div>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-  <h1>BioTech Ventures</h1>
-  <p>Doctor-guided medical weight loss and metabolic telehealth using GLP-1 therapies.</p>
+    <section class="hero" data-aos="fade-in">
+        <div class="hero-content">
+            <h1 data-aos="zoom-in">Transform Your Health from Home</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Personalized telehealth for weight loss, hormone balance, and performance. Fast consults, direct-ship meds, real results.</p>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <a href="#cta" class="btn">Start Your Journey – $199/mo</a>
+            </div>
+        </div>
+    </section>
 
-  <!-- HERO IMAGE -->
-  <img class="hero-img" src="https://source.unsplash.com/1600x700/?telehealth,doctor,nurse" alt="Telehealth Care Team">
+    <section id="services" class="services" data-aos="fade-up">
+        <div class="container">
+            <h2 data-aos="fade-up">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Weight Loss">
+                    <div class="service-card-content">
+                        <h3>Medical Weight Loss</h3>
+                        <p>GLP-1 agonists like semaglutide & tirzepatide. Lose 15–20% body weight with expert guidance.</p>
+                        <a href="#pricing" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="HRT">
+                    <div class="service-card-content">
+                        <h3>Hormone Replacement Therapy</h3>
+                        <p>Custom testosterone, estrogen, or peptide plans. Feel energized and balanced again.</p>
+                        <a href="#pricing" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="ED Treatment">
+                    <div class="service-card-content">
+                        <h3>Men's Performance & ED</h3>
+                        <p>Sildenafil, tadalafil, or compounded options. Discreet, effective support delivered.</p>
+                        <a href="#pricing" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <a class="cta" href="#apply">Apply as a Provider</a>
-</header>
+    <section id="how" class="how" data-aos="fade-up">
+        <div class="container">
+            <h2 data-aos="fade-up">How It Works</h2>
+            <div class="steps">
+                <div class="step" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Step 1">
+                    <h3>1. Quick Online Intake</h3>
+                    <p>Answer a few questions about your goals. No in-person visit needed.</p>
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Step 2">
+                    <h3>2. Video Consult</h3>
+                    <p>Chat with a licensed NP in 15 minutes. Get your personalized plan.</p>
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Step 3">
+                    <h3>3. Meds Shipped to You</h3>
+                    <p>Compounded & delivered discreetly. Unlimited follow-ups included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<nav>
-  <a href="#home">Home</a>
-  <a href="#nps">For Providers</a>
-  <a href="#medspas">For Med Spas</a>
-  <a href="#how">How It Works</a>
-  <a href="#compliance">Compliance</a>
-  <a href="#apply">Apply</a>
-</nav>
+    <section id="pricing" class="pricing" data-aos="fade-up">
+        <div class="container">
+            <h2 data-aos="fade-up">Simple, Transparent Pricing</h2>
+            <div class="plans">
+                <div class="plan" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Weight Loss Starter</h3>
+                    <div class="price">$199/mo</div>
+                    <ul>
+                        <li>Semaglutide or Tirzepatide</li>
+                        <li>Monthly supply + consult</li>
+                        <li>Unlimited messaging</li>
+                    </ul>
+                    <!-- Stripe Checkout -->
+                    <form action="/charge" method="post">
+                        <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-medium"
+                            data-key="pk_test_51XXXXXXXXXXXXX"  <!-- Replace with your publishable key -->
+                            data-amount="19900"  <!-- $199 -->
+                            data-name="BioTech Ventures - Weight Loss"
+                            data-description="Monthly GLP-1 Plan"
+                            data-image="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                            data-locale="auto"
+                            data-currency="usd">
+                        </script>
+                    </form>
+                </div>
+                <div class="plan featured" data-aos="fade-up" data-aos-delay="200">
+                    <h3>HRT Premium</h3>
+                    <div class="price">$249/mo</div>
+                    <ul>
+                        <li>Custom hormone plan</li>
+                        <li>Labs included quarterly</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#cta" class="btn">Get Started</a>
+                </div>
+                <div class="plan" data-aos="fade-up" data-aos-delay="300">
+                    <h3>ED Essentials</h3>
+                    <div class="price">$149/mo</div>
+                    <ul>
+                        <li>Sildenafil or Tadalafil</li>
+                        <li>Discreet monthly delivery</li>
+                        <li>Follow-up consults</li>
+                    </ul>
+                    <a href="#cta" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="home">
-  <h2>Clinic-Grade Telehealth Without Insurance Friction</h2>
-  <div class="box">
-    <ul>
-      <li>✓ Cash-pay only model</li>
-      <li>✓ 10–15 minute virtual visits</li>
-      <li>✓ No MD supervision in FPA states</li>
-      <li>✓ 503A pharmacy fulfillment</li>
-      <li>✓ High provider payout</li>
-    </ul>
+    <section id="cta" class="cta" data-aos="fade-up">
+        <div class="container">
+            <h2 data-aos="fade-up">Ready to Start?</h2>
+            <p data-aos="fade-up" data-aos-delay="200">Book your free 15-minute consult. No commitment required.</p>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <!-- Calendly Widget for Video Conference -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/your-calendly-link/15min-consult" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
+        </div>
+    </section>
 
-    <!-- MEDICATION IMAGES -->
-    <div class="img-grid">
-      <img src="https://source.unsplash.com/800x600/?medicine,pills,pharmacy" alt="Medication">
-      <img src="https://source.unsplash.com/800x600/?weight-loss,healthcare" alt="Weight Loss Medication">
-      <img src="https://source.unsplash.com/800x600/?prescription,pharmacy" alt="Prescription Drugs">
-    </div>
-  </div>
-</section>
+    <footer data-aos="fade-up">
+        <div class="container">
+            <p>&copy; 2025 BioTech Ventures. All rights reserved. | Telehealth services in select states. | <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+        </div>
+    </footer>
 
-<section id="nps">
-  <h2>For Nurse Practitioners</h2>
-  <div class="box">
-    <ul>
-      <li>$80–$100 per completed chart</li>
-      <li>100% remote telehealth</li>
-      <li>1099 independent contractor</li>
-      <li>No insurance or admin burden</li>
-      <li>We supply patients & pharmacy</li>
-    </ul>
-
-    <!-- FRIENDLY NURSE IMAGES -->
-    <div class="img-grid">
-      <img src="https://source.unsplash.com/800x600/?nurse,smiling" alt="Friendly Nurse">
-      <img src="https://source.unsplash.com/800x600/?telehealth,nurse" alt="Telehealth Nurse">
-      <img src="https://source.unsplash.com/800x600/?medical-team,nurses" alt="Nursing Team">
-    </div>
-
-    <a class="cta" href="#apply">Apply as an NP</a>
-  </div>
-</section>
-
-<section id="medspas">
-  <h2>For Med Spas & Wellness Clinics</h2>
-  <div class="box">
-    <ul>
-      <li>White-label GLP-1 programs</li>
-      <li>NP prescribing coverage provided</li>
-      <li>Revenue per completed chart</li>
-      <li>No MD overhead required</li>
-    </ul>
-
-    <div class="img-grid">
-      <img src="https://source.unsplash.com/800x600/?med-spa" alt="Med Spa">
-      <img src="https://source.unsplash.com/800x600/?aesthetic-clinic" alt="Aesthetic Clinic">
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <h2>How It Works</h2>
-  <div class="box">
-    <ol>
-      <li>Patient books online consultation</li>
-      <li>NP completes telehealth visit</li>
-      <li>Prescription sent to licensed pharmacy</li>
-      <li>Medication ships to patient</li>
-      <li>Monthly refills & follow-ups</li>
-    </ol>
-  </div>
-</section>
-
-<section id="compliance">
-  <h2>Compliance & Medical Governance</h2>
-  <div class="box">
-    <ul>
-      <li>Cash-pay telehealth model</li>
-      <li>Full Practice Authority states only</li>
-      <li>State-licensed Nurse Practitioners</li>
-      <li>503A pharmacy fulfillment partners</li>
-      <li>HIPAA-compliant systems</li>
-      <li>No insurance billing</li>
-    </ul>
-  </div>
-</section>
-
-<section id="apply">
-  <h2>Apply Now</h2>
-  <div class="box">
-    <form action="mailto:joshuaready@gmail.com" method="post" enctype="text/plain">
-      <input type="text" name="Name" placeholder="Full Name" required>
-      <input type="email" name="Email" placeholder="Email Address" required>
-      <input type="text" name="State" placeholder="State(s) Licensed" required>
-      <select name="Provider Type">
-        <option>FNP</option>
-        <option>ANP</option>
-        <option>Med Spa Owner</option>
-      </select>
-      <input type="text" name="Experience" placeholder="Years of Clinical Experience">
-      <button type="submit">Submit Application</button>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <p>© 2025 BioTech Ventures LLC — Cash-Pay Telehealth Platform</p>
-</footer>
-
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        // Stripe init (for backend paperwork – replace keys)
+        const stripe = Stripe('pk_test_51XXXXXXXXXXXXX');  // Your publishable key
+    </script>
 </body>
 </html>
+   
+   
+  
+
