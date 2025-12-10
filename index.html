@@ -1,72 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BioTech Ventures | Premium GLP-1 & Hormone Therapy</title>
-  <meta name="description" content="Physician-grade weight loss, HRT, and performance programs. Starting at $499/month. Discreet delivery, unlimited provider access."/>
-
-  <!-- AOS Animation + Calendly + Stripe -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioTech Ventures | GLP-1 Weight Loss & Hormone Therapy</title>
+  <meta name="description" content="Premium GLP-1 weight loss starting at $499/month. HRT & ED from $249. Discreet delivery, unlimited provider access."/>
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-  <script src="https://js.stripe.com/v3/"></script>
-
   <style>
-    :root { --primary: #1e3a8a; --accent: #00d4ff; }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter', 'Segoe UI', sans-serif; line-height:1.6; color:#1f2937; background:#f8fafc; }
-    .container { max-width:1280px; margin:0 auto; padding:0 20px; }
+    :root { --blue:#0ea5e9; --dark:#0f172a; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',system-ui,sans-serif;line-height:1.6;color:#1e293b;background:#fff;}
+    .container{max-width:1280px;margin:0 auto;padding:0 24px;}
+    header{position:fixed;top:0;width:100%;background:white;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.08);padding:16px 0;}
+    nav{display:flex;justify-content:space-between;align-items:center;}
+    .logo{font-size:1.9rem;font-weight:900;color:var(--dark);}
+    nav ul{display:flex;gap:40px;list-style:none;font-weight:600;}
+    nav a{color:#334155;transition:0.3s;}
+    nav a:hover{color:var(--blue);}
 
-    header { position:fixed; top:0; width:100%; background:rgba(255,255,255,0.98); backdrop-filter:blur(12px); z-index:1000; padding:16px 0; box-shadow:0 4px 20px rgba(0,0,0,0.06); }
-    nav { display:flex; justify-content:space-between; align-items:center; }
-    .logo { font-size:1.8rem; font-weight:900; color:var(--primary); }
-    nav ul { display:flex; gap:40px; list-style:none; }
-    nav a { font-weight:600; color:#374151; transition:0.3s; }
-    nav a:hover { color:var(--primary); }
-
-    .hero {
-      height:100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-        url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=90') center/cover no-repeat;
-      display:flex; align-items:center; justify-content:center; text-align:center; color:white;
+    .hero{
+      height:100vh;background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2340&q=90') center/cover;
+      color:white;text-align:center;display:flex;align-items:center;justify-content:center;
     }
-    .hero h1 { font-size:4.2rem; font-weight:900; margin-bottom:20px; text-shadow:0 4px 20px rgba(0,0,0,0.6); }
-    .hero p { font-size:1.5rem; max-width:800px; margin:0 auto 40px; opacity:0.95; }
-    .btn {
-      background:var(--accent); color:black; padding:18px 48px; border-radius:100px; font-size:1.3rem; font-weight:800;
-      box-shadow:0 10px 30px rgba(0,212,255,0.3); transition:0.3s;
+    .hero h1{font-size:4.2rem;font-weight:900;margin-bottom:20px;}
+    .hero p{font-size:1.5rem;max-width:900px;margin:0 auto 40px;opacity:0.95;}
+    .btn{background:var(--blue);color:white;padding:18px 50px;border-radius:100px;font-size:1.3rem;font-weight:700;
+         box-shadow:0 12px 30px rgba(14,165,233,0.3);transition:0.3s;}
+    .btn:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(14,165,233,0.4);}
+
+    section{padding:100px 0;}
+    h2{font-size:3rem;text-align:center;margin-bottom:60px;color:var(--dark);}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:40px;}
+
+    .plan{background:white;border-radius:24px;padding:50px 30px;text-align:center;
+          box-shadow:0 20px 60px rgba(0,0,0,0.08);transition:0.4s;position:relative;}
+    .plan:hover{transform:translateY(-12px);}
+    .price{font-size:4.8rem;font-weight:900;color:var(--dark);margin:20px 0;}
+    .price sup{font-size:2rem;top:-1.8em;}
+    .price small{font-size:1.5rem;color:#64748b;}
+
+    .most-popular{
+      position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+      background:var(--blue);color:white;padding:8px 30px;border-radius:50px;font-weight:700;font-size:1rem;
     }
-    .btn:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,212,255,0.4); }
 
-    section { padding:100px 0; }
-    h2 { font-size:3rem; text-align:center; margin-bottom:60px; color:#111; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(360px,1fr)); gap:40px; }
+    .cta{background:linear-gradient(135deg,var(--blue),#3b82f6);color:white;text-align:center;padding:120px 20px;}
+    .calendly-inline-widget{min-width:320px;height:750px;margin:40px auto;border-radius:20px;overflow:hidden;}
 
-    .plan {
-      background:white; border-radius:24px; padding:50px 30px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.08);
-      transition:0.4s; border:2px solid transparent;
-    }
-    .plan:hover { transform:translateY(-15px); border-color:var(--accent); }
-    .plan.featured { border:3px solid var(--accent); transform:scale(1.05); }
-    .price { font-size:4.5rem; font-weight:900; color:var(--primary); margin:20px 0; }
-    .price sup { font-size:2rem; top:-1.5em; }
-    .includes { margin:30px 0; font-size:1.1rem; color:#555; }
-
-    .cta-section {
-      background:linear-gradient(135deg, var(--primary), #1e40af); color:white; text-align:center; padding:120px 20px;
-    }
-    .calendly-inline-widget { min-width:320px; height:750px; margin:40px auto; border-radius:16px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
-
-    footer { background:#111; color:#888; text-align:center; padding:60px 20px; font-size:0.95rem; }
-
-    @media (max-width:768px) {
-      .hero h1 { font-size:2.8rem; }
-      .price { font-size:3.5rem; }
-      nav ul { gap:20px; font-size:0.9rem; }
-    }
+    footer{background:#0f172a;color:#94a3b8;text-align:center;padding:60px 20px;}
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -82,101 +67,95 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div>
-      <h1>Premium Physician-Grade<br>Telehealth Programs</h1>
-      <p>Lose 15–25% body weight • Optimize hormones • Regain performance<br>Starting at $499/month with unlimited provider access</p>
-      <a href="#cta" class="btn">Start Today – Free Consult</a>
+      <h1>Premium Weight Loss & Hormone Therapy</h1>
+      <p>GLP-1 programs starting at $499/month • HRT & ED from $249 • Discreet monthly delivery • Unlimited provider access</p>
+      <a href="#cta" class="btn">Start Free 15-Min Consult</a>
     </div>
   </section>
 
-  <!-- PROGRAMS -->
   <section id="programs">
     <div class="container">
-      <h2>Choose Your Transformation</h2>
+      <h2>Choose Your Program</h2>
       <div class="grid">
-        <div class="plan" data-aos="fade-up">
+
+        <!-- Weight Loss – Premium Pricing -->
+        <div class="plan">
+          <div class="most-popular">MOST POPULAR</div>
           <h3>Signature Weight Loss</h3>
-          <div class="price"><sup>$</sup>499<span style="font-size:1.8rem;">/mo</span></div>
-          <div class="includes">
-            • Compounded GLP-1 (semaglutide/tirzepatide)<br>
-            • Weekly injections + oral options<br>
-            • Unlimited provider messaging<br>
-            • Quarterly video check-ins<br>
-            • Lab work included
-          </div>
+          <div class="price"><sup>$</sup>499<small>/mo</small></div>
+          <ul style="text-align:left;margin:30px 0;font-size:1.1rem;color:#475569;">
+            <li>Compounded GLP-1 (semaglutide/tirzepatide)</li>
+            <li>Weekly injections + oral options</li>
+            <li>Unlimited provider messaging</li>
+            <li>Quarterly labs included</li>
+          </ul>
           <a href="#cta" class="btn">Get Started</a>
         </div>
 
-        <div class="plan featured" data-aos="fade-up" data-aos-delay="100">
-          <h3>Elite Hormone Optimization</h3>
-          <div class="price"><sup>$</sup>599<span style="font-size:1.8rem;">/mo</span></div>
-          <div class="includes">
-            • Custom TRT or BHRT protocol<br>
-            • Peptides (CJC-1295, Ipamorelin, BPC-157)<br>
-            • Monthly labs + provider calls<br>
-            • Performance & longevity stack<br>
-            • Priority support
-          </div>
+        <div class="plan">
+          <div class="most-popular" style="background:#10b981;">BEST VALUE</div>
+          <h3>Elite Weight Loss + Peptides</h3>
+          <div class="price"><sup>$</sup>599<small>/mo</small></div>
+          <ul style="text-align:left;margin:30px 0;font-size:1.1rem;color:#475569;">
+            <li>Everything in Signature +</li>
+            <li>CJC-1295, Ipamorelin, BPC-157</li>
+            <li>Monthly labs & provider calls</li>
+            <li>Priority clinical support</li>
+          </ul>
           <a href="#cta" class="btn">Join Elite</a>
         </div>
 
-        <div class="plan" data-aos="fade-up" data-aos-delay="200">
-          <h3>Performance & Vitality</h3>
-          <div class="price"><sup>$</sup>549<span style="font-size:1.8rem;">/mo</span></div>
-          <div class="includes">
-            • ED treatment (sildenafil, tadalafil, trimix)<br>
-            • Peptide performance stack<br>
-            • Testosterone optimization<br>
-            • Discreet monthly delivery
-          </div>
+        <!-- HRT & Performance – Regular Pricing -->
+        <div class="plan">
+          <h3>Hormone Optimization (HRT)</h3>
+          <div class="price"><sup>$</sup>299<small>/mo</small></div>
+          <ul style="text-align:left;margin:30px 0;font-size:1.1rem;color:#475569;">
+            <li>Custom TRT or BHRT protocol</li>
+            <li>Monthly medication delivery</li>
+            <li>Lab review every 3 months</li>
+          </ul>
           <a href="#cta" class="btn">Get Started</a>
         </div>
+
+        <div class="plan">
+          <h3>Men’s Performance & ED</h3>
+          <div class="price"><sup>$</sup>249<small>/mo</small></div>
+          <ul style="text-align:left;margin:30px 0;font-size:1.1rem;color:#475569;">
+            <li>Sildenafil, tadalafil, trimix</li>
+            <li>Discreet monthly supply</li>
+            <li>Unlimited follow-ups</li>
+          </ul>
+          <a href="#cta" class="btn">Get Started</a>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how">
+  <section id="how" style="background:#f8fafc;">
     <div class="container">
-      <h2 style="color:white; text-shadow:0 4px 20px black;">How It Works – 3 Simple Steps</h2>
+      <h2>How It Works</h2>
       <div class="grid">
-        <div class="plan" style="background:rgba(0,0,0,0.5); color:white;">
-          <h3>1. Book Your Consult</h3>
-          <p>Free 15-min video call with a licensed provider</p>
-        </div>
-        <div class="plan" style="background:rgba(0,0,0,0.5); color:white;">
-          <h3>2. Get Your Custom Plan</h3>
-          <p>Personalized medication + dosing schedule</p>
-        </div>
-        <div class="plan" style="background:rgba(0,0,0,0.5); color:white;">
-          <h3>3. Meds Delivered Monthly</h3>
-          <p>Direct from our 503A pharmacy to your door</p>
-        </div>
+        <div class="plan"><h3>1. Free Consult</h3><p>15-min video call</p></div>
+        <div class="plan"><h3>2. Custom Plan</h3><p>Personalized meds + dosing</p></div>
+        <div class="plan"><h3>3. Delivered Monthly</h3><p>Direct from 503A pharmacy</p></div>
       </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section id="cta" class="cta-section">
-    <h2>Start Your Transformation Today</h2>
-    <p style="font-size:1.5rem; margin:30px 0;">Book a free 15-minute consult with our clinical team.<br>No commitment • Takes 2 minutes</p>
-
-    <!-- Calendly Widget (Video Conference) -->
-    <div class="calendly-inline-widget" 
-         data-url="https://calendly.com/gwen-biotech/15min-consult?background_color=1e3a8a&text_color=ffffff&primary_color=00d4ff"
-         style="min-width:min-width:320px;height:750px;"></div>
+  <section id="cta" class="cta">
+    <h2>Start Today — Free 15-Min Consult</h2>
+    <p style="font-size:1.5rem;margin:30px 0;">No commitment. Takes 2 minutes.</p>
+    <div class="calendly-inline-widget"
+         data-url="https://calendly.com/gwen-biotech/15min-consult?background_color=0f172a&text_color=ffffff&primary_color=0ea5e9"
+         style="min-width:320px;height:750px;"></div>
   </section>
 
   <footer>
-    <p>&copy; 2025 BioTech Ventures LLC — Premium Telehealth Services</p>
-    <p>Available in Kansas • New Mexico • North Dakota • South Dakota • and expanding</p>
+    <p>© 2025 BioTech Ventures LLC — Available in KS • NM • ND • SD and expanding</p>
   </footer>
-
-  <script>
-    AOS.init({ duration: 1000, once: true });
-  </script>
 </body>
 </html>
-
+ 
